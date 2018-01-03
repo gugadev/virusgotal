@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"log"
+	"os"
 	"time"
 
 	"github.com/common-nighthawk/go-figure"
@@ -30,6 +32,15 @@ func main() {
 	key := flag.String("key", "Your VT API Key", "Ex.: dg2nfng304ngdjng234fng4tfnfjn34")
 	path := flag.String("file", "Path of the file", "/home/janedoe/suspectfile.ext")
 	flag.Parse()
+
+	if key == nil {
+		log.Fatal("You need to provide your VirusTotal API key")
+		os.Exit(-1)
+	}
+	if path == nil {
+		log.Fatal("You need to provide the file path")
+		os.Exit(-1)
+	}
 
 	// open the file to send to VT
 	file := FileUtils.Open(*path)
