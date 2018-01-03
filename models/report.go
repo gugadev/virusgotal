@@ -36,11 +36,15 @@ func (m *Report) Show() {
 	}
 	var data [][]string
 	for key, scan := range m.Scans {
+		isDetected := "No"
+		if scan.Detected {
+			isDetected = "Yes"
+		}
 		data = append(data, []string{
 			key,
 			scan.Version,
 			scan.Result,
-			strconv.FormatBool(scan.Detected),
+			isDetected,
 		})
 	}
 	footer := []string{
